@@ -89,7 +89,7 @@ int main(int argc, char **argv){
     char * path;
     if(argc == 3){
         THREAD_NUM=std::atol(argv[1]);
-        runtimelist=(unsigned long *)malloc(THREAD_NUM* sizeof(unsigned long));
+        runtimelist=(unsigned long *)calloc(sizeof(unsigned long),THREAD_NUM);
         path=argv[2];
     }else{
         printf("please input filename\n");
