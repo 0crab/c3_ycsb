@@ -139,10 +139,10 @@ void send_thread(int tid){
     int hit =0,miss=0,in=0;
     for (int i = start_index ;i <start_index+send_num ; i++) {
         YCSB_request * req=loads[i];
-        if (req->getOp()==lookup) {
+        if (req->getOp()==insert||req->getOp()==update) {
             memc_put(memc, req->getKey(),req->keyLength(), req->getVal(),req->valLength());
             in++;
-        } else if (req->getOp()==insert||req->getOp()==update) {
+        } else if (req->getOp()==lookup) {
             char *val = memc_get(memc, req->getKey(),req->keyLength());
             if (val == NULL) {
                 // cache miss, put something (gabage) in cache
